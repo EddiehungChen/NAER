@@ -280,9 +280,14 @@ export default function ExamBuilder() {
                       const isAdded = selectedQuestions.includes(q.id);
                       return (
                         <div key={q.id} className={`flex items-center justify-between p-3 border rounded-lg transition-colors ${isAdded ? 'border-gray-200 bg-gray-50 opacity-60' : 'border-gray-200 hover:border-indigo-300 hover:shadow-sm'}`}>
-                          <div className="flex-1 mr-3">
-                            <p className={`font-medium text-sm mb-1 ${isAdded ? 'text-gray-500 line-through' : 'text-gray-800'}`}>{q.text}</p>
-                            <span className={`text-[10px] px-2 py-0.5 rounded border ${q.difficulty === '易' ? 'bg-green-50 text-green-700 border-green-200' : q.difficulty === '中' ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-red-50 text-red-700 border-red-200'}`}>{q.difficulty}</span>
+                          <div className="flex-1 mr-3 flex items-center justify-between gap-3 min-w-0">
+                            <div>
+                              <p className={`font-medium text-sm mb-1 ${isAdded ? 'text-gray-500 line-through' : 'text-gray-800'}`}>{q.text}</p>
+                              <span className={`text-[10px] px-2 py-0.5 rounded border ${q.difficulty === '易' ? 'bg-green-50 text-green-700 border-green-200' : q.difficulty === '中' ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-red-50 text-red-700 border-red-200'}`}>{q.difficulty}</span>
+                            </div>
+                            <div className="w-24 h-14 bg-gray-100 rounded pointer-events-none border border-gray-200 overflow-hidden shrink-0 shadow-sm hidden sm:block">
+                              <img src={`https://picsum.photos/seed/exam${q.id}/160/90`} alt="縮圖" className={`w-full h-full object-cover transition-all ${isAdded ? 'grayscale opacity-50' : ''}`} />
+                            </div>
                           </div>
                           <button 
                             disabled={isAdded}
@@ -321,8 +326,13 @@ export default function ExamBuilder() {
                             <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm mr-3 shrink-0">
                               {index + 1}
                             </div>
-                            <div className="flex-1 font-medium text-gray-800 text-sm leading-snug break-words pr-2">
-                              {q.text}
+                            <div className="flex-1 mr-2 flex items-center justify-between gap-3 min-w-0">
+                              <div className="font-medium text-gray-800 text-sm leading-snug break-words">
+                                {q.text}
+                              </div>
+                              <div className="w-24 h-14 bg-gray-100 rounded pointer-events-none border border-gray-200 overflow-hidden shrink-0 shadow-sm hidden lg:block">
+                                <img src={`https://picsum.photos/seed/exam${q.id}/160/90`} alt="縮圖" className="w-full h-full object-cover" />
+                              </div>
                             </div>
                             <button onClick={() => handleRemoveQuestion(qId)} className="p-2 text-red-400 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors border border-transparent hover:border-red-100 shrink-0">
                               <X className="w-5 h-5"/>
